@@ -33,13 +33,13 @@ def teams_at_event(event_key):
         teams = []
 
         for team in jsonified:
-                teams.append(team['key'])
+                teams.append(team['team_number'])
+
+        teams.sort()
 
         return teams
 
-
-print(teams_at_event('2016nyro'))
-
+print(get_event_info('2016njfla'))
 
 # request = urllib.request.Request(URL + 'event/' + event_key + '/teams')
 # request.add_header(HEADER_KEY, HEADER_VAL)
