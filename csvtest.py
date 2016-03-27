@@ -1,8 +1,11 @@
 import csv
-my_dict = {1257: 9, 1626: 5, 1676: 6, 5624: 1}
 
+data = [['team', 'founded', 'years active'],
+        [1257, 2004, 9],
+        [1626, 2005, 10]
+        ]
 
-with open('writetest.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    for key, value in my_dict.items():
-        writer.writerow([key, value])
+with open('writetest.csv', 'w', newline='\n') as f:
+    writer = csv.writer(f, delimiter=',')
+    for row in data:
+        writer.writerow(row)
