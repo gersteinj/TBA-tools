@@ -47,7 +47,8 @@ def active_in_year(team_num, year):
         return False
 
 # Get list of all teams
-historic_team_list = get_all_teams(14)
+# historic_team_list = get_all_teams(14)
+historic_team_list = get_all_teams(1)
 print(historic_team_list)
 # Check if each team is active in specified year
 for team in historic_team_list:
