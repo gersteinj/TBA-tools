@@ -3,19 +3,27 @@ import TBAT
 
 current_year = 2016
 
+# I still need to fix my code to not need this
+stop_page = 13
+
 # set up data list
-data = [['team', 'founded', 'last competed' 'years active', 'max possible years']]
+data = [['team', 'founded', 'last active', 'years active', 'max possible years','ratio']]
 
 # get list of teams, store in all_teams
-all_teams = TBAT.get_all_teams(1)
+all_teams = TBAT.get_all_teams(stop_page)
 print(all_teams)
 
 # TODO: get info associated with each team
 
 # Add each team and its associated info to the data list
-for team in all_teams[:5]:
+for team in all_teams:
     years = TBAT.get_active_years(team)
-    temp = [team, years[0], years[len(years)-1], len(years), current_year + 1 - years[0]]
+    rookie_year = years[0]
+    last_active = years[len(years)-1]
+    years_active = len(years)
+    max_years = current_year + 1 - rookie_year
+    temp = [team, rookie_year, last_active, years_active, max_years, years_active/max_years]
+    print(temp)
     data.append(temp)
 
 print(data)
