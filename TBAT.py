@@ -8,7 +8,7 @@ HEADER_KEY = 'X-TBA-App-Id'
 HEADER_VAL = 'jgerstein:APItest:v01'
 header = {HEADER_KEY: HEADER_VAL}
 
-# TODO: figure out how to make the function identify the last page
+# TODO: figure out how to make the function identify the last page on its own
 def get_all_teams(last_page):
     all_teams = []
 
@@ -47,6 +47,16 @@ def active_in_year(team_num, year):
     else:
         return False
 
+
+def get_rookie_year(team_num):
+    r = (URL + 'team/frc' + str(team_num))
+    response = requests.get(r, headers=header)
+
+    jsonified = response.json()
+    rookie_year = int((jsonified['rookie_year']))
+
+    return rookie_year
+
 '''
 # Get list of all teams
 # historic_team_list = get_all_teams(14)
@@ -62,3 +72,5 @@ for team in historic_team_list:
 
 print(active_in_year(1257, 2016))
 '''
+
+# print(get_rookie_year(7))
