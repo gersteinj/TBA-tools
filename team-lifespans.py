@@ -18,8 +18,15 @@ print(all_teams)
 # Add each team and its associated info to the data list
 for team in all_teams:
     years = TBAT.get_active_years(team)
-    rookie_year = years[0]
-    last_active = years[len(years)-1]
+    # TODO: Get rookie year from Team Info instead, use that in calculations
+    try:
+        rookie_year = years[0]
+    except IndexError:
+        rookie_year = 0
+    try:
+        last_active = years[len(years)-1]
+    except IndexError:
+        last_active = 0
     years_active = len(years)
     max_years = current_year + 1 - rookie_year
     temp = [team, rookie_year, last_active, years_active, max_years, years_active/max_years]
