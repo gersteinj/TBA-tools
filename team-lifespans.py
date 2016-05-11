@@ -7,7 +7,7 @@ current_year = 2016
 stop_page = 13
 
 # set up data list
-headers = [['team', 'founded', 'last active', 'years active', 'max possible years','ratio']]
+headers = ['team', 'founded', 'last active', 'years active', 'max possible years','ratio']
 
 with open('teaminfo.csv', 'w', newline='\n') as f:
     writer = csv.writer(f, delimiter=',')
