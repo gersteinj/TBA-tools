@@ -5,7 +5,7 @@ import requests
 URL = 'http://www.thebluealliance.com/api/v2/'
 
 HEADER_KEY = 'X-TBA-App-Id'
-HEADER_VAL = 'jgerstein:APItest:v01'
+HEADER_VAL = 'jgerstein:APItest:v02'
 header = {HEADER_KEY: HEADER_VAL}
 
 # TODO: figure out how to make the function identify the last page on its own
