@@ -57,6 +57,22 @@ def get_rookie_year(team_num):
 
     return rookie_year
 
+
+def get_team_info(team_num):
+    r = (URL + 'team/frc' + str(team_num))
+    response = requests.get(r, headers=header)
+
+    jsonified = response.json()
+    return jsonified
+
+
+def get_team_events(team_num, year):
+    r = (URL + 'team/frc' + str(team_num) + '/' + str(year) + '/events')
+    response = requests.get(r, headers=header)
+
+    jsonified = response.json()
+    return jsonified
+
 '''
 # Get list of all teams
 # historic_team_list = get_all_teams(14)
