@@ -7,32 +7,36 @@ logging.basicConfig(level=logging.DEBUG)
 
 # set up a session
 s = requests.Session()
-s.headers.update({'X-TBA-APP-ID':'jgerstein:TBAT:v2'})
+s.headers.update({'X-TBA-APP-ID': 'jgerstein:TBAT:v2'})
 
 base_url = 'https://www.thebluealliance.com/api/v2/'
 team_url = base_url + 'team/frc'
+event_url = base_url + 'event/'
+district_url = base_url + 'district/'
+
+
+def process_data(info):
+    data = info.json()
+    logging.debug(data)
+    return data
+
 
 def get_api_status():
     """Checks status of the API"""
     r = s.get(base_url + 'status')
-    logging.debug(r.json())
-    return r.json()
+    return process_data(r)
 
 
 def get_team_info(team_number):
     """Gets info about a team"""
     r = s.get(team_url + str(team_number))
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_list(page_num):
     """Gets the specified page of the team list"""
     r = s.get(base_url + 'teams/' + str(page_num))
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_all_teams():
@@ -57,50 +61,134 @@ def get_all_teams():
 def get_team_events(team_number, year=2016):
     """Gets team events for a given year. Defaults to 2016"""
     r = s.get(team_url + str(team_number) + '/' + str(year) + '/events')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_event_awards(team_number, event):
     """Gets a team's awards for a specified event"""
     r = s.get(team_url + str(team_number) + '/event/' + event + '/awards')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_event_matches(team_number, event):
     """Gets a team's matches for a specified event"""
     r = s.get(team_url + str(team_number) + '/event/' + event + '/matches')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_years_participated(team_number):
     """Gets a team's years participated in FRC"""
     r = s.get(team_url + str(team_number) + '/years_participated')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_media(team_number, year=2016):
     """Returns a team's media for a specific year. Defaults to 2016"""
     r = s.get(team_url + str(team_number) + '/' + str(year) + '/media')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
 
 
 def get_team_event_history(team_number):
     """Returns a team's event history"""
     r = s.get(team_url + str(team_number) + '/history/events')
-    data = r.json()
-    logging.debug(data)
-    return data
+    return process_data(r)
+
+
+def get_team_awards_history(team_number):
+    """Gets a specified team's historical awards"""
+    r = s.get(team_url + str(team_number) + '/history/awards')
+    return process_data(r)
+
+
+def get_team_robot_history(team_number):
+    """Gets a specified team's historical robot info"""
+    r = s.get(team_url + str(team_number) + '/history/robots')
+    return process_data(r)
+
+
+def get_team_district_history(team_number):
+    """Gets historical data about a team's district membership"""
+    r = s.get(team_url + str(team_number) + '/history/districts')
+    return process_data(r)
+
+
+def get_events_by_year(year=2016):
+    """Gets list of events for the specified year. Defaults to 2016"""
+    r = s.get(base_url + 'events/' + str(year))
+    return process_data(r)
+
+
+def get_event_info(event_key):
+    """Gets info about specified event"""
+    r = s.get(event_url + str(event_key))
+    return process_data(r)
+
+
+def get_event_teams(event_key):
+    """Gets teams in attendance at specified event"""
+    r = s.get(event_url + str(event_key) + '/teams')
+    return process_data(r)
+
+
+def get_event_matches(event_key):
+    """Gets matches for specified event"""
+    r = s.get(event_url + str(event_key) + '/matches')
+    return process_data(r)
+
+
+def get_event_stats(event_key):
+    """Gets stats for specified event"""
+    r = s.get(event_url + str(event_key) + '/stats')
+    return process_data(r)
+
+
+def get_event_rankings(event_key):
+    """Gets rankings for specified event"""
+    r = s.get(event_url + str(event_key) + '/rankings')
+    return process_data(r)
+
+
+def get_event_awards(event_key):
+    """Gets awards for specified event"""
+    r = s.get(event_url + str(event_key) + '/awards')
+    return process_data(r)
+
+
+def get_event_district_points(event_key):
+    """Gets district points for specified event"""
+    r = s.get(event_url + str(event_key) + '/district_points')
+    return process_data(r)
+
+
+def get_match(match_key):
+    """Gets data for a specified match"""
+    r = s.get(base_url + 'match/' + str(match_key))
+    return process_data(r)
+
+
+def get_districts(year=2016):
+    """Gets a list of districts for the specified year. Defaults to 2016"""
+    r = s.get(base_url + 'districts/' + str(year))
+    return process_data(r)
+
+
+def get_district_events(district_key, year=2016):
+    """Gets events for a district in a specified year. Defaults to 2016"""
+    r = s.get(district_url + district_key + '/' + str(year) + '/events')
+    return process_data(r)
+
+
+def get_district_rankings(district_key, year=2016):
+    """Gets rankings for a district in a specified year. Defaults to 2016"""
+    r = s.get(district_url + district_key + '/' + str(year) + '/rankings')
+    return process_data(r)
+
+
+def get_district_teams(district_key, year=2016):
+    """Gets teams for a district in a specified year. Defaults to 2016"""
+    r = s.get(district_url + district_key + '/' + str(year) + '/teams')
+    return process_data(r)
 
 
 # Test below this line
-get_api_status()
+get_district_teams('mar', 2016)
