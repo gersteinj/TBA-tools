@@ -29,9 +29,9 @@ def fetch_team_info(test=False):
         all_teams = tbat.get_all_teams()
 
     # Create objects
-    teams = []
+    teams = {}
     for team in all_teams:
-        teams.append(Team(team))
+        teams[team['team_number']] = Team(team)
     return teams
 
 
