@@ -19,10 +19,14 @@ class Team(object):
         self.years_active = tbat.get_team_years_participated(results['team_number'])
 
 
-def fetch_team_info():
+# Do this with a dictionary instead?
+def fetch_team_info(test=False):
     """Fetches all team info. Do only as needed."""
     # Get all teams
-    all_teams = tbat.get_all_teams()
+    if(test):
+        all_teams = tbat.get_team_list(0)
+    else:
+        all_teams = tbat.get_all_teams()
 
     # Create objects
     teams = []
@@ -32,6 +36,6 @@ def fetch_team_info():
 
 
 # Test below this line
-teams = fetch_team_info()
-for team in teams:
-    print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
+# teams = fetch_team_info()
+# for team in teams:
+#     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
