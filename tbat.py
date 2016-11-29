@@ -190,4 +190,3 @@ def get_district_teams(district_key, year=2016):
 
 
 # Test below this line
-get_district_teams('mar', 2016)
