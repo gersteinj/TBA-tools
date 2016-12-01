@@ -16,7 +16,7 @@ class Team(object):
         self.rookie_year = results['rookie_year']
         self.motto = results['motto']
         self.key = results['key']
-        self.years_active = tbat.get_team_years_participated(results['team_number'])
+        # self.years_active = tbat.get_team_years_participated(results['team_number'])
 
 
 # Do this with a dictionary instead?
