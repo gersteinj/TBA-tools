@@ -18,8 +18,8 @@ class Team(object):
         self.motto = results['motto']
         self.key = results['key']
         self.years_active = tbat.get_team_years_participated(results['team_number'])
-        self.event_history = tbat.get_team_event_history(results['team_number'])
-        self.award_history = tbat.get_team_awards_history(results['team_number'])
+        # self.event_history = tbat.get_team_event_history(results['team_number'])
+        # self.award_history = tbat.get_team_awards_history(results['team_number'])
 
 
 # Do this with a dictionary instead?
