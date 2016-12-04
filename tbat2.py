@@ -22,7 +22,6 @@ class Team(object):
         # self.award_history = tbat.get_team_awards_history(results['team_number'])
 
 
-# Do this with a dictionary instead?
 def update_team_info(test=False):
     """Fetches all team info. Do only as needed."""
     # Get all teams
@@ -35,14 +34,23 @@ def update_team_info(test=False):
     teams = {}
     for team in all_teams:
         temp_team = Team(team)
-        teams[team['team_number']] = json.dumps(vars(temp_team), indent=4, sort_keys=True)
+        teams[team['team_number']] = vars(temp_team)
     with open('all_teams.json', 'w') as all_teams:
         json.dump(teams, all_teams, indent=4, sort_keys=True)
     return teams
 
 
+def load_team_info():
+    """Loads the save team info"""
+    data = open('all_teams.json', 'r')
+    teams = json.load(data)
+    data.close()
+    return teams
+
 # Test below this line
-# teams = fetch_team_info()
-# for team in teams:
-#     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-update_team_info(test=True)
+if __name__ == "__main__":
+    # teams = fetch_team_info()
+    # for team in teams:
+    #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
+    teams = load_team_info()
+    print(teams['11'])
