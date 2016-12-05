@@ -40,8 +40,25 @@ def update_team_info(test=False):
     # Create objects
     teams = {}
     for team in all_teams:
-        temp_team = Team(team)
-        teams[team['team_number']] = vars(temp_team)
+        events = []
+        temp_events = tbat.get_team_event_history(team['team_number'])
+        for event in temp_events:
+            events.append(event['key'])
+        teams[team['team_number']] = {
+            'website': team['website'],
+            'nickname': team['nickname'],
+            'locality': team['locality'],
+            'region': team['region'],
+            'country_name': team['country_name'],
+            'location': team['location'],
+            'team_number': team['team_number'],
+            'name': team['name'],
+            'rookie_year': team['rookie_year'],
+            'motto': team['motto'],
+            'years_active': tbat.get_team_years_participated(team['team_number']),
+            'event_history': events,
+            'award_history': tbat.get_team_awards_history(team['team_number'])
+        }
         logging.info('%s complete' % team['team_number'])
     with open('cached_data/all_teams.json', 'w') as all_teams:
         json.dump(teams, all_teams, indent=4, sort_keys=True)
@@ -49,15 +66,16 @@ def update_team_info(test=False):
 
 
 def load_team_info():
-    """Loads the save team info"""
+    """Loads the saved team info"""
     data = open('cached_data/all_teams.json', 'r')
     teams = json.load(data)
     data.close()
     return teams
+
 
 # Test below this line
 if __name__ == "__main__":
     # teams = fetch_team_info()
     # for team in teams:
     #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-    update_team_info()
+    update_team_info(True)
