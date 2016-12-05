@@ -2,7 +2,7 @@ import requests
 import logging
 
 # logging configuration
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 # set up a session
 s = requests.Session()
