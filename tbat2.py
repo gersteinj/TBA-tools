@@ -43,14 +43,14 @@ def update_team_info(test=False):
         temp_team = Team(team)
         teams[team['team_number']] = vars(temp_team)
         logging.info('%s complete' % team['team_number'])
-    with open('all_teams.json', 'w') as all_teams:
+    with open('cached_data/all_teams.json', 'w') as all_teams:
         json.dump(teams, all_teams, indent=4, sort_keys=True)
     return teams
 
 
 def load_team_info():
     """Loads the save team info"""
-    data = open('all_teams.json', 'r')
+    data = open('cached_data/all_teams.json', 'r')
     teams = json.load(data)
     data.close()
     return teams
