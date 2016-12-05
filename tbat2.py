@@ -18,8 +18,8 @@ class Team(object):
         self.motto = results['motto']
         self.key = results['key']
         self.years_active = tbat.get_team_years_participated(results['team_number'])
-        # self.event_history = tbat.get_team_event_history(results['team_number'])
-        # self.award_history = tbat.get_team_awards_history(results['team_number'])
+        self.event_history = tbat.get_team_event_history(results['team_number'])
+        self.award_history = tbat.get_team_awards_history(results['team_number'])
 
 
 def update_team_info(test=False):
@@ -52,5 +52,4 @@ if __name__ == "__main__":
     # teams = fetch_team_info()
     # for team in teams:
     #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-    teams = load_team_info()
-    print(teams['11'])
+    update_team_info()
