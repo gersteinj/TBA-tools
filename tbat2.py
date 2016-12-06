@@ -73,9 +73,23 @@ def load_team_info():
     return teams
 
 
+def update_event_keys():
+    """Fetches a list of all event keys"""
+    events = {}
+    for year in range(1992, 2018):
+        temp_events = tbat.get_events_by_year(year)
+        keys = []
+        for event in temp_events:
+            keys.append(event['key'])
+        events[year] = keys
+    print(events)
+    with open('cached_data/all_event_keys.json', 'w') as event_keys:
+        json.dump(events, event_keys, indent=4, sort_keys=True)
+    return events
+
+
 # Test below this line
 if __name__ == "__main__":
     # teams = fetch_team_info()
     # for team in teams:
-    #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-    update_team_info(True)
+    update_event_keys()
