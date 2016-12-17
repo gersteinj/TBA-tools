@@ -1,6 +1,6 @@
 import tbat
-import json
 import logging
+import pickle
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,10 +29,10 @@ class Team(object):
         self.award_history = tbat.get_team_awards_history(results['team_number'])
 
 
-def update_team_info(test=False):
+def update_team_info(test=''):
     """Fetches all team info. Do only as needed."""
     # Get all teams
-    if(test):
+    if(test == 'test'):
         all_teams = tbat.get_team_list(0)
     else:
         all_teams = tbat.get_all_teams()
@@ -40,18 +40,17 @@ def update_team_info(test=False):
     # Create objects
     teams = {}
     for team in all_teams:
-        temp_team = Team(team)
-        teams[team['team_number']] = vars(temp_team)
+        teams[team['team_number']] = Team(team)
         logging.info('%s complete' % team['team_number'])
-    with open('cached_data/all_teams.json', 'w') as all_teams:
-        json.dump(teams, all_teams, indent=4, sort_keys=True)
+    with open('cached_data/all_teams.p', 'wb') as all_teams:
+        pickle.dump(teams, all_teams)
     return teams
 
 
 def load_team_info():
-    """Loads the save team info"""
-    data = open('cached_data/all_teams.json', 'r')
-    teams = json.load(data)
+    """Loads the save team info. Remember to import the Team class"""
+    data = open('cached_data/all_teams.p', 'rb')
+    teams = pickle.load(data)
     data.close()
     return teams
 
@@ -60,4 +59,5 @@ if __name__ == "__main__":
     # teams = fetch_team_info()
     # for team in teams:
     #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-    update_team_info()
+    all_teams = load_team_info()
+    print(all_teams)
