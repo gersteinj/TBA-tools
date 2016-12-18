@@ -7,18 +7,6 @@ logging.basicConfig(level=logging.INFO)
 data_folder = 'cached_data/'
 
 
-def update_event_keys():
-    all_event_keys = {}
-    for year in range(1992, tbat.current_year + 1):
-        all_event_keys[year] = []
-        events = tbat.get_events_by_year(year)
-        for event in events:
-            all_event_keys[year].append(event['key'])        
-    with open(data_folder + 'event_keys.p', 'wb') as file:
-        pickle.dump(all_event_keys, file)
-    return all_event_keys
-
-
 class Team(object):
 
     def __init__(self, results):
@@ -66,6 +54,24 @@ class Event(object):
         self.district_string = results['event_district_string']
         self.official = results['official']
         self.timezone = results['timezone']
+
+
+def update_event_keys():
+    event_keys = {}
+    for year in range(1992, tbat.current_year + 1):
+        event_keys[year] = []
+        events = tbat.get_events_by_year(year)
+        for event in events:
+            event_keys[year].append(event['key'])        
+    with open(data_folder + 'event_keys.p', 'wb') as file:
+        pickle.dump(event_keys, file)
+    return event_keys
+
+
+def load_event_keys():
+    with open(data_folder + 'event_keys.p', 'rb') as file:
+        event_keys = pickle.load(file)
+    return event_keys
 
 
 def update_individual_event(event_key):
