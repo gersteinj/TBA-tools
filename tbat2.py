@@ -4,6 +4,8 @@ import pickle
 
 logging.basicConfig(level=logging.INFO)
 
+data_folder = 'cached_data/'
+
 
 def update_event_keys():
     all_event_keys = {}
@@ -12,6 +14,8 @@ def update_event_keys():
         events = tbat.get_events_by_year(year)
         for event in events:
             all_event_keys[year].append(event['key'])        
+    with open(data_folder + 'event_keys.p', 'wb') as file:
+        pickle.dump(all_event_keys, file)
     return all_event_keys
 
 
@@ -71,15 +75,15 @@ def update_individual_event(event_key):
     # Create event object
     event = Event(e)
     filename = str(event_key) + '.p'
-    with open('cached_data/' + filename, 'wb') as event_info:
-        pickle.dump(event, event_info)
+    with open(data_folder + filename, 'wb') as file:
+        pickle.dump(event, file)
     return event
 
 
 def load_individual_event(event_key):
     filename = str(event_key) + '.p'
-    with open('cached_data/' + filename, 'rb') as event_info:
-        event = pickle.load(event_info)
+    with open(data_folder + filename, 'rb') as file:
+        event = pickle.load(file)
     return event
 
 
@@ -96,16 +100,15 @@ def update_all_teams(test=''):
     for team in all_teams:
         teams[team['team_number']] = Team(team)
         logging.info('%s complete' % team['team_number'])
-    with open('cached_data/all_teams.p', 'wb') as all_teams:
-        pickle.dump(teams, all_teams)
+    with open(data_folder + 'all_teams.p', 'wb') as file:
+        pickle.dump(teams, file)
     return teams
 
 
 def load_all_teams():
     """Loads the save team info. Remember to import the Team class"""
-    data = open('cached_data/all_teams.p', 'rb')
-    teams = pickle.load(data)
-    data.close()
+    with open(data_folder + 'all_teams.p', 'rb') as file:
+        teams = pickle.load(file)
     return teams
 
 
