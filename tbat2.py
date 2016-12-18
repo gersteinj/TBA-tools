@@ -5,6 +5,16 @@ import pickle
 logging.basicConfig(level=logging.INFO)
 
 
+def update_event_keys():
+    all_event_keys = {}
+    for year in range(1992, tbat.current_year + 1):
+        all_event_keys[year] = []
+        events = tbat.get_events_by_year(year)
+        for event in events:
+            all_event_keys[year].append(event['key'])        
+    return all_event_keys
+
+
 class Team(object):
 
     def __init__(self, results):
@@ -72,7 +82,8 @@ def load_individual_event(event_key):
         event = pickle.load(event_info)
     return event
 
-def update_team_info(test=''):
+
+def update_all_teams(test=''):
     """Fetches all team info. Do only as needed."""
     # Get all teams
     if(test == 'test'):
@@ -90,7 +101,7 @@ def update_team_info(test=''):
     return teams
 
 
-def load_team_info():
+def load_all_teams():
     """Loads the save team info. Remember to import the Team class"""
     data = open('cached_data/all_teams.p', 'rb')
     teams = pickle.load(data)
@@ -100,5 +111,7 @@ def load_team_info():
 
 # Test below this line
 if __name__ == "__main__":
-    bri = load_individual_event('2016njbri')
-    print(dir(bri))
+    # bri = load_individual_event('2016njbri')
+    # print(dir(bri))
+    all_events = update_event_keys()
+    print(all_events[2016])
