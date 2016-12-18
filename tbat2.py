@@ -29,6 +29,49 @@ class Team(object):
         self.award_history = tbat.get_team_awards_history(results['team_number'])
 
 
+class Event(object):
+
+    def __init__(self, results):
+        self.name = results['name']
+        self.event_type = results['event_type']
+        self.event_district = results['event_district']
+        # self.facebook_eid = results['facebook_eid']
+        self.event_code = results['event_code']
+        self.week = results['week']
+        self.start_date = results['start_date']
+        self.location = results['location']
+        self.type_string = results['event_type_string']
+        self.alliances = results['alliances']
+        self.end_date = results['end_date']
+        self.key = results['key']
+        self.short_name = results['short_name']
+        self.website = results['website']
+        self.webcast = results['webcast']
+        self.venue_address = results['venue_address']
+        self.year = results['year']
+        self.district_string = results['event_district_string']
+        self.official = results['official']
+        self.timezone = results['timezone']
+
+
+def update_individual_event(event_key):
+    """Fetches event info about specified event."""
+    # Get info about event
+    e = tbat.get_event_info(event_key)
+    # Create event object
+    event = Event(e)
+    filename = str(event_key) + '.p'
+    with open('cached_data/' + filename, 'wb') as event_info:
+        pickle.dump(event, event_info)
+    return event
+
+
+def load_individual_event(event_key):
+    filename = str(event_key) + '.p'
+    with open('cached_data/' + filename, 'rb') as event_info:
+        event = pickle.load(event_info)
+    return event
+
 def update_team_info(test=''):
     """Fetches all team info. Do only as needed."""
     # Get all teams
@@ -54,10 +97,8 @@ def load_team_info():
     data.close()
     return teams
 
+
 # Test below this line
 if __name__ == "__main__":
-    # teams = fetch_team_info()
-    # for team in teams:
-    #     print("Team %s is from %s. They are typically called %s. They were active in %s" % (team.team_number, team.locality, team.nickname, team.years_active))
-    all_teams = load_team_info()
-    print(all_teams)
+    bri = load_individual_event('2016njbri')
+    print(dir(bri))

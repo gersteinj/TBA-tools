@@ -4,6 +4,9 @@ import logging
 # logging configuration
 logging.basicConfig(level=logging.INFO)
 
+# current year
+current_year = 2016
+
 # set up a session
 s = requests.Session()
 s.headers.update({'X-TBA-APP-ID': 'jgerstein:TBAT:v2'})
@@ -57,8 +60,8 @@ def get_all_teams():
     return all_teams
 
 
-def get_team_events(team_number, year=2016):
-    """Gets team events for a given year. Defaults to 2016"""
+def get_team_events(team_number, year=current_year):
+    """Gets team events for a given year. Defaults to current_year"""
     r = s.get(team_url + str(team_number) + '/' + str(year) + '/events')
     return process_data(r)
 
@@ -81,8 +84,8 @@ def get_team_years_participated(team_number):
     return process_data(r)
 
 
-def get_team_media(team_number, year=2016):
-    """Returns a team's media for a specific year. Defaults to 2016"""
+def get_team_media(team_number, year=current_year):
+    """Returns a team's media for a specific year. Defaults to current_year"""
     r = s.get(team_url + str(team_number) + '/' + str(year) + '/media')
     return process_data(r)
 
@@ -111,8 +114,8 @@ def get_team_district_history(team_number):
     return process_data(r)
 
 
-def get_events_by_year(year=2016):
-    """Gets list of events for the specified year. Defaults to 2016"""
+def get_events_by_year(year=current_year):
+    """Gets list of events for the specified year. Defaults to current_year"""
     r = s.get(base_url + 'events/' + str(year))
     return process_data(r)
 
@@ -165,26 +168,26 @@ def get_match(match_key):
     return process_data(r)
 
 
-def get_districts(year=2016):
-    """Gets a list of districts for the specified year. Defaults to 2016"""
+def get_districts(year=current_year):
+    """Gets a list of districts for the specified year. Defaults to current_year"""
     r = s.get(base_url + 'districts/' + str(year))
     return process_data(r)
 
 
-def get_district_events(district_key, year=2016):
-    """Gets events for a district in a specified year. Defaults to 2016"""
+def get_district_events(district_key, year=current_year):
+    """Gets events for a district in a specified year. Defaults to current_year"""
     r = s.get(district_url + district_key + '/' + str(year) + '/events')
     return process_data(r)
 
 
-def get_district_rankings(district_key, year=2016):
-    """Gets rankings for a district in a specified year. Defaults to 2016"""
+def get_district_rankings(district_key, year=current_year):
+    """Gets rankings for a district in a specified year. Defaults to current_year"""
     r = s.get(district_url + district_key + '/' + str(year) + '/rankings')
     return process_data(r)
 
 
-def get_district_teams(district_key, year=2016):
-    """Gets teams for a district in a specified year. Defaults to 2016"""
+def get_district_teams(district_key, year=current_year):
+    """Gets teams for a district in a specified year. Defaults to current_year"""
     r = s.get(district_url + district_key + '/' + str(year) + '/teams')
     return process_data(r)
 
