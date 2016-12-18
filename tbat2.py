@@ -35,14 +35,14 @@ class Event(object):
 
     def __init__(self, results):
         self.name = results['name']
-        self.event_type = results['event_type']
-        self.event_district = results['event_district']
+        self.type_const = results['event_type']
+        self.district_const = results['event_district']
         # self.facebook_eid = results['facebook_eid']
         self.event_code = results['event_code']
         self.week = results['week']
         self.start_date = results['start_date']
         self.location = results['location']
-        self.type_string = results['event_type_string']
+        self.event_type = results['event_type_string']
         self.alliances = results['alliances']
         self.end_date = results['end_date']
         self.key = results['key']
@@ -51,9 +51,15 @@ class Event(object):
         self.webcast = results['webcast']
         self.venue_address = results['venue_address']
         self.year = results['year']
-        self.district_string = results['event_district_string']
+        self.district = results['event_district_string']
         self.official = results['official']
         self.timezone = results['timezone']
+        event_teams = []
+        teams_ = tbat.get_event_teams(self.key)
+        for t in teams_:
+            event_teams.append(t['team_number'])
+        self.teams = event_teams
+
 
 
 def update_event_keys():
