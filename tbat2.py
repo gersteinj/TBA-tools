@@ -59,6 +59,11 @@ class Event(object):
         for t in teams_:
             event_teams.append(t['team_number'])
         self.teams = event_teams
+        self.matches = tbat.get_event_matches(self.key)
+        self.rankings = tbat.get_event_rankings(self.key)
+        self.awards = tbat.get_event_awards(self.key)
+        self.stats = tbat.get_event_stats(self.key)
+        self.district_points = tbat.get_event_district_points(self.key)
 
 
 
