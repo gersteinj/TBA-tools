@@ -63,8 +63,11 @@ class Event(object):
         self.rankings = tbat.get_event_rankings(self.key)
         self.awards = tbat.get_event_awards(self.key)
         self.stats = tbat.get_event_stats(self.key)
-        self.district_points = tbat.get_event_district_points(self.key)
-
+        # try:
+        #     self.district_points = tbat.get_event_district_points(self.key)
+        # except:
+        #     logging.warning('json decode error')
+        #     self.district_points = []
 
 
 def update_event_keys():

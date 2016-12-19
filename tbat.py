@@ -183,6 +183,7 @@ def get_district_events(district_key, year=current_year):
 def get_district_rankings(district_key, year=current_year):
     """Gets rankings for a district in a specified year. Defaults to current_year"""
     r = s.get(district_url + district_key + '/' + str(year) + '/rankings')
+    logging.info(r)
     return process_data(r)
 
 
