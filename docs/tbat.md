@@ -41,9 +41,11 @@ This is the starting point for TBA Tools. Once I've got everything set up, most 
 
 <a name="process-data"></a>
 #### Process Data 
+
 ```python
 process_data(api_response)
 ```
+
 Processes data from an API request and returns a JSONified version.
 
 <a name="get-api-status"></a>
