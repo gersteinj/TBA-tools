@@ -18,6 +18,7 @@ district_url = base_url + 'district/'
 
 
 def process_data(info):
+    """Processes data from an API call to return it to the function from which it's called"""
     data = info.json()
     logging.debug(data)
     return data
