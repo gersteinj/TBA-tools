@@ -38,7 +38,7 @@ This is the starting point for TBA Tools. Once I've got everything set up, most 
 
 ## General Purpose
 
-#### Process Data 
+### Process Data 
 
 ```python
 process_data(api_response)
@@ -46,7 +46,7 @@ process_data(api_response)
 
 Processes data from an API request and returns a JSONified version.
 
-#### Get API Status
+### Get API Status
 ```python
 get_api_status()
 ```
@@ -54,7 +54,7 @@ Returns current status of the TBA API.
 
 ## Team Requests
 
-#### Get Team Info
+### Get Team Info
 ```python
 get_team_info(team_number)
 
@@ -63,7 +63,7 @@ get_team_info(1257)
 ```
 Returns info about a team.
 
-#### Get Team List
+### Get Team List
 ```python
 get_team_list(page_num)
 
@@ -72,13 +72,13 @@ get_team_list(2)
 ```
 Returns the list of teams from a specific page. Each page contains teams starting at 500 * page_num and ending at start + 499.
 
-#### Get List of All Teams
+### Get List of All Teams
 ```python
 get_team_list()
 ```
 Returns a list of all teams, past and present.
 
-#### Get Team Events
+### Get Team Events
 ```python
 get_team_events(team_number, [year])
 
@@ -88,7 +88,7 @@ get_team_events(1257, 2014)
 ```
 Returns the specified team's events for the specified year. If no year is provided, defaults to the current year.
 
-#### Get Team Event Awards
+### Get Team Event Awards
 ```python
 get_team_event_awards(team_number, event)
 
@@ -97,7 +97,7 @@ get_team_event_awards(1257, '2016njbri')
 ```
 Returns the specified team's awards for the specified event. Event should be given as an event key using the official event codes.
 
-#### Get Team Event Matches
+### Get Team Event Matches
 ```python
 get_team_event_matches(team_number, event)
 
@@ -106,7 +106,7 @@ get_team_event_matches(1257, '2016njfla')
 ```
 Returns the specified team's matches for the specified event. Event should be given as an event key using the official event codes.
 
-#### Get Team Years Participated
+### Get Team Years Participated
 ```python
 get_team_years_participated(team_number)
 
@@ -115,7 +115,7 @@ get_team_years_participated(1257)
 ```
 Returns a list of the years in which a team participated in FRC
 
-#### Get Team Media
+### Get Team Media
 ```python
 get_team_media(team_number, [year])
 
@@ -125,7 +125,7 @@ get_team_media(1257)
 ```
 Returns a list of team media for the specified year. Year defaults to current year if not specified.
 
-#### Get Team Event History
+### Get Team Event History
 ```python
 get_team_event_history(team_number)
 
@@ -134,7 +134,7 @@ get_team_event_history(1257)
 ```
 Returns a team's event history.
 
-#### Get Team Award History
+### Get Team Award History
 ```python
 get_team_awards_history(team_number)
 
@@ -145,7 +145,7 @@ Returns a list of the specified team's awards.
 
 ## Event Requests
 
-#### Get Events By Year
+### Get Events By Year
 ```python
 get_events_by_year([year])
 
@@ -155,7 +155,7 @@ get_events_by_year(2014)
 ```
 Returns a list of event keys for the specified year. Defaults to the current year if year is not specified.
 
-#### Get Event Info
+### Get Event Info
 ```python
 get_event_info(event_key)
 
@@ -165,7 +165,7 @@ get_event_info('2015njfla')
 ```
 Returns information about the specified event. Event should be given as as an event key using the official event codes.
 
-#### Get Teams at Event
+### Get Teams at Event
 ```python
 get_event_teams(event_key)
 
@@ -174,7 +174,7 @@ get_event_info('2016njbri')
 ```
 Returns a list of teams that attended the specified event. Event should be given as an event key using the official event codes.
 
-#### Get Event Matches
+### Get Event Matches
 ```python
 get_event_matches(event_key)
 
@@ -183,7 +183,7 @@ get_event_matches('2016njfla')
 ```
 Returns the specified event's matches. Event should be given as an event key using the official event codes.
 
-#### Get Event Statistics
+### Get Event Statistics
 ```python
 get_event_stats(event_key)
 
@@ -192,7 +192,7 @@ get_event_stats('2016njbri')
 ```
 Returns the statistics for the specified event. Event should be given as an event key using the official event codes.
 
-#### Get Event District Points
+### Get Event District Points
 ```python
 get_event_district_points(event_key)
 
@@ -201,7 +201,7 @@ get_event_district_points('2016njfla')
 ```
 Returns the district points each team received at the specified event. Event should be given as an event key using the official event codes.
 
-#### Get Match
+### Get Match
 ```python
 get_match(match_key)
 
@@ -213,7 +213,7 @@ Returns info about a specific match.
 
 ## District Requests
 
-#### Get Districts
+### Get Districts
 ```python
 get_districts([year])
 
@@ -223,7 +223,7 @@ get_districts(2016)
 ```
 Returns a list of districts for the specified year. If no year is specified, it defaults to the current year
 
-#### Get District Events
+### Get District Events
 ```python
 get_district_events(district_key, [year])
 
@@ -233,7 +233,7 @@ get_district_events(fim, 2014)
 ```
 Returns a district's events for the specified year. If no year is specified, it defaults to the current year
 
-#### Get District Rankings
+### Get District Rankings
 ```python
 get_district_rankings(district_key, [year])
 
@@ -243,7 +243,7 @@ get_district_rankings(fim, 2014)
 ```
 Returns a district's rankings for the specified year. If no year is specified, it defaults to the current year
 
-#### Get District Teams
+### Get District Teams
 ```python
 get_district_teams(district_key, [year])
 
