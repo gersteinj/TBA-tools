@@ -108,7 +108,7 @@ get_team_event_awards(team_number, event)
 # Example
 get_team_event_awards(1257, '2016njbri')
 ```
-Returns the specified team's awards for the specified event. Event should be given as an event key using the official event codes.
+Returns the specified team's awards for the specified event. Event should be given as an event key using the year + official event codes.
 
 <a name="get-team-event-matches"></a>
 ### Get Team Event Matches
@@ -119,7 +119,7 @@ get_team_event_matches(team_number, event)
 # Example
 get_team_event_matches(1257, '2016njfla')
 ```
-Returns the specified team's matches for the specified event. Event should be given as an event key using the official event codes.
+Returns the specified team's matches for the specified event. Event should be given as an event key using the year + official event codes.
 
 <a name="get-team-years-participated"></a>
 ### Get Team Years Participated
@@ -191,7 +191,7 @@ get_event_info(event_key)
 get_event_info('2016njbri')
 get_event_info('2015njfla')
 ```
-Returns information about the specified event. Event should be given as as an event key using the official event codes.
+Returns information about the specified event. Event should be given as as an event key using the year + official event codes.
 
 <a name="get-teams-at-event"></a>
 ### Get Teams at Event
@@ -202,7 +202,7 @@ get_event_teams(event_key)
 #example
 get_event_info('2016njbri')
 ```
-Returns a list of teams that attended the specified event. Event should be given as an event key using the official event codes.
+Returns a list of teams that attended the specified event. Event should be given as an event key using the year + official event codes.
 
 <a name="get-event-matches"></a>
 ### Get Event Matches
@@ -213,7 +213,7 @@ get_event_matches(event_key)
 # example
 get_event_matches('2016njfla')
 ```
-Returns the specified event's matches. Event should be given as an event key using the official event codes.
+Returns the specified event's matches. Event should be given as an event key using the year + official event codes.
 
 <a name="get-event-statistics"></a>
 ### Get Event Statistics
@@ -224,7 +224,7 @@ get_event_stats(event_key)
 # example
 get_event_stats('2016njbri')
 ```
-Returns the statistics for the specified event. Event should be given as an event key using the official event codes.
+Returns the statistics for the specified event. Event should be given as an event key using the year + official event codes.
 
 <a name="get-event-district-points"></a>
 ### Get Event District Points
@@ -235,7 +235,7 @@ get_event_district_points(event_key)
 # example
 get_event_district_points('2016njfla')
 ```
-Returns the district points each team received at the specified event. Event should be given as an event key using the official event codes.
+Returns the district points each team received at the specified event. Event should be given as an event key using the year + official event codes.
 
 <a name="get-match"></a>
 ### Get Match
