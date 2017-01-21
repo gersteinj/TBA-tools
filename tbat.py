@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # current year
-current_year = 2016
+current_year = 2017
 
 # set up a session
 s = requests.Session()
